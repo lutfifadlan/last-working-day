@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 interface Props {
   onGenerate: (formData: any) => void;
+  loading: boolean;
 }
 
-const InputForm: React.FC<Props> = ({ onGenerate }) => {
+const InputForm: React.FC<Props> = ({ onGenerate, loading }) => {
   const [formData, setFormData] = useState({
     name: '',
     position: '',
@@ -36,6 +37,7 @@ const InputForm: React.FC<Props> = ({ onGenerate }) => {
           className="input input-bordered bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={formData.name}
           onChange={handleChange}
+          disabled={loading}
         />
       </div>
       <div className="form-control mb-4">
@@ -48,6 +50,7 @@ const InputForm: React.FC<Props> = ({ onGenerate }) => {
           className="input input-bordered bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={formData.position}
           onChange={handleChange}
+          disabled={loading}
         />
       </div>
       <div className="form-control mb-4">
@@ -59,6 +62,7 @@ const InputForm: React.FC<Props> = ({ onGenerate }) => {
           className="textarea textarea-bordered bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={formData.highlights}
           onChange={handleChange}
+          disabled={loading}
         />
       </div>
       <div className="form-control mb-4">
@@ -70,14 +74,21 @@ const InputForm: React.FC<Props> = ({ onGenerate }) => {
           className="textarea textarea-bordered bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           value={formData.memories}
           onChange={handleChange}
+          disabled={loading}
         />
       </div>
       <div className="form-control mt-6">
         <button
           type="submit"
           className="btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+          disabled={loading}
         >
-          Generate Message
+          {loading ? (
+            <>
+              <svg className="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>
+              Generating your message, please wait...
+            </>
+          ) : 'Generate Message'}
         </button>
       </div>
     </form>

@@ -17,12 +17,12 @@ const GeneratedMessage: React.FC<Props> = ({ message }) => {
   return (
     <div className="mt-6">
       <h2 className="text-xl font-bold mb-4">Generated Message</h2>
-      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-inner">
+      <div className="bg-base-200 p-4 rounded-lg shadow-inner">
         <p className="whitespace-pre-line">{message}</p>
       </div>
       <button
         onClick={copyToClipboard}
-        className="btn btn-secondary mt-4 w-full bg-gray-800 hover:bg-gray-700 border-none"
+        className="mt-4 btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
       >
         {copied ? 'Copied!' : 'Copy to Clipboard'}
       </button>

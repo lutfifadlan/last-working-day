@@ -4,7 +4,6 @@ import InputForm from '../components/InputForm';
 import GeneratedMessage from '../components/GeneratedMessage';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 
 interface UserData {
   name: string;

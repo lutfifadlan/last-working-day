@@ -8,8 +8,9 @@ import { Session } from 'next-auth';
 
 interface UserData {
   name: string;
-  jobTitle: string;
-  companyName: string;
+  position: string;
+  highlights: string;
+  memories: string;
 }
 
 const Home: React.FC = () => {
@@ -19,8 +20,9 @@ const Home: React.FC = () => {
   const [loadingMessage, setLoadingMessage] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserData>({
     name: '',
-    jobTitle: '',
-    companyName: '',
+    position: '',
+    highlights: '',
+    memories: '',
   });
 
   const toggleDarkMode = () => {
@@ -46,11 +48,12 @@ const Home: React.FC = () => {
   const fetchLinkedInData = async () => {
     // Fetch LinkedIn data here
     // This is a placeholder function. You would need to implement the actual data fetching logic.
-    // Assuming we get name, jobTitle, and companyName from LinkedIn profile
+    // Assuming we get name, position, highlights, and memories from LinkedIn profile
     const data = {
       name: 'John Doe',
-      jobTitle: 'Software Engineer',
-      companyName: 'LinkedIn',
+      position: 'Software Engineer',
+      highlights: 'Implemented new features and optimized existing codebase.',
+      memories: 'Working with a fantastic team on challenging projects.',
     };
     setUserData(data);
   };
@@ -72,11 +75,14 @@ const Home: React.FC = () => {
           </button>
         </div>
         {status === 'unauthenticated' ? (
-          <button onClick={() => signIn('linkedin')} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Sign in with LinkedIn</button>
+          <div>
+            <p className="mb-4">You can manually input your data in the form below or sign in with LinkedIn to automatically fill in the data based on your LinkedIn profile.</p>
+            <button onClick={() => signIn('linkedin')} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200" disabled>Sign in with LinkedIn</button>
+          </div>
         ) : (
           <div>
-            <button onClick={() => signOut()} className="btn btn-secondary mb-4">Sign out</button>
-            <p className="mb-4">Signed in as {session?.user?.name}</p>
+            <button onClick={() => signOut()} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Sign out</button>
+            <p className="mb-4">Signed in as {session?.user?.name}. Your data has been automatically filled in from your LinkedIn profile. You can edit the data in the form below if needed.</p>
           </div>
         )}
         <InputForm onGenerate={generateMessage} loading={loadingMessage} userData={userData} />

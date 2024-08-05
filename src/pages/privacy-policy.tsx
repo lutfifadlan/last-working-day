@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
         </p>
         <h2 className="text-2xl font-bold mb-2">Contact Us</h2>
         <p>
-          If you have any questions about this Privacy Policy, please contact us at [Your Contact Information].
+          If you have any questions about this Privacy Policy, please contact us at mochamadlutfifadlan@gmail.com
         </p>
       </div>
     </div>

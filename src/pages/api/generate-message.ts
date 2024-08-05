@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import OpenAI from 'openai';
 
-const GPT_MODEL = 'gpt-3.5-turbo';
+const GPT_MODEL = 'gpt-4o-mini';
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });

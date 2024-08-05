@@ -1,34 +1,17 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 
 interface InputFormProps {
   onGenerate: (formData: any) => void;
   loading: boolean;
-  userData: {
-    name: string;
-    position: string;
-    highlights: string;
-    memories: string;
-  };
 }
 
-const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading, userData }) => {
+const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading }) => {
   const [formData, setFormData] = useState({
     name: '',
     position: '',
     highlights: '',
     memories: '',
   });
-
-  useEffect(() => {
-    if (userData.name || userData.position || userData.highlights || userData.memories) {
-      setFormData({
-        name: userData.name || formData.name,
-        position: userData.position || formData.position,
-        highlights: userData.highlights || formData.highlights,
-        memories: userData.memories || formData.memories,
-      });
-    }
-  }, [userData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -97,7 +80,7 @@ const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading, userData }) 
       <div className="form-control mt-6">
         <button
           type="submit"
-          className="btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+          className="btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-gray-700 dark:text-gray-900 dark:hover:bg-gray-200"
           disabled={loading}
         >
           {loading ? (
@@ -105,7 +88,7 @@ const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading, userData }) 
               <span className="loading loading-spinner loading-md"></span>
               Generating your message, please wait...
             </>
-          ) : 'Generate Message'}
+          ) : <div className='text-white dark:text-gray-900'>Generate Message</div>}
         </button>
       </div>
     </form>

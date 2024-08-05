@@ -76,11 +76,11 @@ const Home: React.FC = () => {
         {status === 'unauthenticated' ? (
           <div>
             <p className="mb-4">You can manually input your data in the form below or sign in with LinkedIn to automatically fill in the data based on your LinkedIn profile.</p>
-            <button onClick={() => signIn('linkedin')} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200" disabled>Sign in with LinkedIn</button>
+            <button onClick={() => signIn('linkedin')} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Sign in with LinkedIn</button>
           </div>
         ) : (
           <div>
-            <button onClick={() => signOut()} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200" disabled>Sign out</button>
+            <button onClick={() => signOut()} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Sign out</button>
             <p className="mb-4">Signed in as {session?.user?.name}. Your data has been automatically filled in from your LinkedIn profile. You can edit the data in the form below if needed.</p>
           </div>
         )}

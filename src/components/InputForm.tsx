@@ -80,7 +80,7 @@ const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading }) => {
       <div className="form-control mt-6">
         <button
           type="submit"
-          className="btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-gray-700 dark:text-gray-900 dark:hover:bg-gray-200"
+          className="btn btn-primary w-full border-none bg-gray-800 hover:bg-gray-700 dark:bg-gray-700 dark:text-gray-900 dark:hover:bg-gray-600"
           disabled={loading}
         >
           {loading ? (
@@ -88,7 +88,7 @@ const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading }) => {
               <span className="loading loading-spinner loading-md"></span>
               Generating your message, please wait...
             </>
-          ) : <div className='text-white dark:text-gray-900'>Generate Message</div>}
+          ) : <div className='text-gray-900 dark:text-gray-400'>Generate Message</div>}
         </button>
       </div>
     </form>

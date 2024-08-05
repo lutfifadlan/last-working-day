@@ -80,7 +80,7 @@ const Home: React.FC = () => {
           </div>
         ) : (
           <div>
-            <button onClick={() => signOut()} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Sign out</button>
+            <button onClick={() => signOut()} className="btn btn-primary mb-4 bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200" disabled>Sign out</button>
             <p className="mb-4">Signed in as {session?.user?.name}. Your data has been automatically filled in from your LinkedIn profile. You can edit the data in the form below if needed.</p>
           </div>
         )}

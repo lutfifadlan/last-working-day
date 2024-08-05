@@ -1,17 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface Props {
+interface InputFormProps {
   onGenerate: (formData: any) => void;
   loading: boolean;
+  userData: {
+    name: string;
+    position: string;
+    highlights: string;
+    memories: string;
+  };
 }
 
-const InputForm: React.FC<Props> = ({ onGenerate, loading }) => {
+const InputForm: React.FC<InputFormProps> = ({ onGenerate, loading, userData }) => {
   const [formData, setFormData] = useState({
     name: '',
     position: '',
     highlights: '',
     memories: '',
   });
+
+  useEffect(() => {
+    if (userData.name || userData.position || userData.highlights || userData.memories) {
+      setFormData({
+        name: userData.name || formData.name,
+        position: userData.position || formData.position,
+        highlights: userData.highlights || formData.highlights,
+        memories: userData.memories || formData.memories,
+      });
+    }
+  }, [userData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -85,7 +102,7 @@ const InputForm: React.FC<Props> = ({ onGenerate, loading }) => {
         >
           {loading ? (
             <>
-              <svg className="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>
+              <span className="loading loading-spinner loading-md"></span>
               Generating your message, please wait...
             </>
           ) : 'Generate Message'}

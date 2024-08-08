@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import InputForm from '../components/InputForm';
 import GeneratedMessage from '../components/GeneratedMessage';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { ModeToggle } from '@/components/ModeToggle';
+import InputsForm from '../components/Input';
+import Image from 'next/image';
 
 interface UserData {
   name: string;
@@ -13,14 +14,7 @@ interface UserData {
 
 const Home: React.FC = () => {
   const [message, setMessage] = useState<string>('');
-  const [darkMode, setDarkMode] = useState<boolean>(false);
   const [loadingMessage, setLoadingMessage] = useState<boolean>(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    const theme = darkMode === false ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-  };
 
   const generateMessage = async (formData: UserData) => {
     setLoadingMessage(true);
@@ -39,18 +33,22 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative">
-      <img src="/background-image.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <Image
+        src="/background-image.jpg"
+        alt="Background"
+        layout="fill"
+        objectFit="cover"
+        className="opacity-30"
+      />
       <div className="w-full max-w-2xl bg-base-100 p-8 rounded-lg shadow-xl z-10">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">Last Working Day Message Generator</h1>
-          <button onClick={toggleDarkMode} className="btn btn-sm btn-ghost">
-            {darkMode ? <SunIcon className="h-6 w-6 text-gray-500" /> : <MoonIcon className="h-6 w-6 text-gray-500" />}
-          </button>
+          <ModeToggle/>
         </div>
-        <InputForm onGenerate={generateMessage} loading={loadingMessage} />
+        <InputsForm onGenerate={generateMessage} loading={loadingMessage} />
         {message && <GeneratedMessage message={message} />}
         <footer className="mt-4 text-center">
-          <Link href="/privacy-policy" className="text-sm text-gray-600 hover:underline">
+          <Link href="/privacy-policy" className="text-sm hover:underline">
             Privacy Policy
           </Link>
         </footer>

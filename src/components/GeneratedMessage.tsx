@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from './ui/button';
 
 interface Props {
   message: string;
@@ -20,12 +21,12 @@ const GeneratedMessage: React.FC<Props> = ({ message }) => {
       <div className="bg-base-200 p-4 rounded-lg shadow-inner">
         <p className="whitespace-pre-line">{message}</p>
       </div>
-      <button
+      <Button
         onClick={copyToClipboard}
-        className="mt-4 btn btn-primary w-full bg-gray-800 hover:bg-gray-700 border-none text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+        className="mt-4 w-full"
       >
         {copied ? 'Copied!' : 'Copy to Clipboard'}
-      </button>
+      </Button>
     </div>
   );
 };

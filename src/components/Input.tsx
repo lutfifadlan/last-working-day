@@ -1,14 +1,11 @@
 "use client"
  
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +13,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "./ui/textarea"
-import {Spinner} from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
+import { Button } from "./ui/button"
+import ShinyButton from "@/components/magicui/shiny-button";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -52,14 +51,7 @@ const InputsForm: React.FC<InputFormProps> = ({ onGenerate, loading }) => {
     },
   })
 
-  // const onSubmit: SubmitHandler<FormData> = (data) => {
-  //   onGenerate(data);
-  // };
-
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
     onGenerate(values)
   }
 
@@ -126,9 +118,7 @@ const InputsForm: React.FC<InputFormProps> = ({ onGenerate, loading }) => {
             <span className="flex items-center justify-center">
               <Spinner/>&nbsp;&nbsp;Generating message...
             </span>
-          ) : <Button type="submit" className="w-1/3">
-            Generate message
-          </Button>
+          ) : <ShinyButton text="Generate message"/>           
         }
         </div>
       </form>

@@ -4,6 +4,9 @@ import GeneratedMessage from '../components/GeneratedMessage';
 import { ModeToggle } from '@/components/ModeToggle';
 import InputsForm from '../components/Input';
 import Image from 'next/image';
+// import RetroGrid from "@/components/magicui/retro-grid";
+import DotPattern from '@/components/magicui/dot-pattern';
+import { cn } from '@/lib/utils';
 
 interface UserData {
   name: string;
@@ -33,6 +36,16 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative">
+      <DotPattern
+        width={20}
+        height={20}
+        cx={1}
+        cy={1}
+        cr={1}
+        className={cn(
+          "[mask-image:linear-gradient(to_bottom,white,transparent,transparent)] ",
+        )}
+      />
       <Image
         src="/background-image.jpg"
         alt="Background"
